@@ -1,0 +1,1417 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+		<title>Material News - News Detail</title>
+
+		<!-- Materialize CSS  -->
+		<link href="css/materialize.css" type="text/css" rel="stylesheet">
+	  
+		<!-- Custom Css -->
+		<link href="css/style.css" type="text/css" rel="stylesheet">
+		
+		<!-- Font Awesome Css -->
+		<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet">
+		<link href="css/font-awesome.css" type="text/css" rel="stylesheet">
+		
+		<!-- Slider Css -->
+		<link href="css/pgwslider.css" type="text/css" rel="stylesheet">
+		<link rel='stylesheet' id='camera-css'  href='css/camera.css' type='text/css' media='all'>
+		<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<title>jQuery pagination</title>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				
+				//how much items per page to show
+				var show_per_page = 5; 
+				//getting the amount of elements inside content div
+				var number_of_items = $('#content').children().size();
+				//calculate the number of pages we are going to have
+				var number_of_pages = Math.ceil(number_of_items/show_per_page);
+				
+				//set the value of our hidden input fields
+				$('#current_page').val(0);
+				$('#show_per_page').val(show_per_page);
+				
+				//now when we got all we need for the navigation let's make it '
+				
+				/* 
+				what are we going to have in the navigation?
+					- link to previous page
+					- links to specific pages
+					- link to next page
+				*/
+				var navigation_html = '<a class="previous_link" href="javascript:previous();">Prev</a>';
+				var current_link = 0;
+				while(number_of_pages > current_link){
+					navigation_html += '<a class="page_link" href="javascript:go_to_page(' + current_link +')" longdesc="' + current_link +'">'+ (current_link + 1) +'</a>';
+					current_link++;
+				}
+				navigation_html += '<a class="next_link" href="javascript:next();">Next</a>';
+				
+				$('#page_navigation').html(navigation_html);
+				
+				//add active_page class to the first page link
+				$('#page_navigation .page_link:first').addClass('active_page');
+				
+				//hide all the elements inside content div
+				$('#content').children().css('display', 'none');
+				
+				//and show the first n (show_per_page) elements
+				$('#content').children().slice(0, show_per_page).css('display', 'block');
+				
+			});
+
+			function previous(){
+				
+				new_page = parseInt($('#current_page').val()) - 1;
+				//if there is an item before the current active link run the function
+				if($('.active_page').prev('.page_link').length==true){
+					go_to_page(new_page);
+				}
+				
+			}
+
+			function next(){
+				new_page = parseInt($('#current_page').val()) + 1;
+				//if there is an item after the current active link run the function
+				if($('.active_page').next('.page_link').length==true){
+					go_to_page(new_page);
+				}
+				
+			}
+			function go_to_page(page_num){
+				//get the number of items shown per page
+				var show_per_page = parseInt($('#show_per_page').val());
+				
+				//get the element number where to start the slice from
+				start_from = page_num * show_per_page;
+				
+				//get the element number where to end the slice
+				end_on = start_from + show_per_page;
+				
+				//hide all children elements of content div, get specific items and show them
+				$('#content').children().css('display', 'none').slice(start_from, end_on).css('display', 'block');
+				
+				/*get the page link that has longdesc attribute of the current page and add active_page class to it
+				and remove that class from previously active page link*/
+				$('.page_link[longdesc=' + page_num +']').addClass('active_page').siblings('.active_page').removeClass('active_page');
+				
+				//update the current page input field
+				$('#current_page').val(page_num);
+			}
+			  
+		</script>
+		<style>
+			#page_navigation a{
+				padding:3px;
+				border:1px solid gray;
+				margin:2px;
+				color:black;
+				text-decoration:none
+			}
+			.active_page{
+				background:darkblue;
+				color:white !important;
+			}
+		</style>
+		
+		<script type='text/javascript'>
+			/* <![CDATA[ */
+			var _wpcf7 = {"loaderUrl":"http:\/\/opportunitydesk.org\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ...","cached":"1"};
+			/* ]]> */
+		</script>
+		<script type='text/javascript' src='http://opportunitydesk.org/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.5.4'></script>
+		<script type='text/javascript' src='http://opportunitydesk.org/wp-includes/js/jquery/ui/widget.min.js?ver=1.11.4'></script>
+		<script type='text/javascript' src='http://opportunitydesk.org/wp-content/themes/bresponzive_pro/js/tpcrn_scripts.js?ver=1.0'></script>
+		<script type='text/javascript' src='http://opportunitydesk.org/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4'></script>
+		<script type='text/javascript' src='http://opportunitydesk.org/wp-includes/js/jquery/ui/datepicker.min.js?ver=1.11.4'></script>
+		<script type='text/javascript' src='http://opportunitydesk.org/wp-content/plugins/testimonial-slider/js/testimonial.js?ver=1.2.3'></script>
+		<script type='text/javascript' src='http://opportunitydesk.org/wp-content/plugins/testimonial-slider/js/jquery.touchwipe.js?ver=1.2.3'></script>
+		<script type='text/javascript' src='http://opportunitydesk.org/wp-content/plugins/wysija-newsletters/js/validate/languages/jquery.validationEngine-en.js?ver=2.7.2'></script>
+		<script type='text/javascript' src='http://opportunitydesk.org/wp-content/plugins/wysija-newsletters/js/validate/jquery.validationEngine.js?ver=2.7.2'></script>
+		<script type='text/javascript'>
+		/* <![CDATA[ */
+		var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http:\/\/opportunitydesk.org\/wp-admin\/admin-ajax.php","loadingTrans":"Loading...","is_rtl":""};
+		var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http:\/\/opportunitydesk.org\/wp-admin\/admin-ajax.php","loadingTrans":"Loading...","is_rtl":""};
+		/* ]]> */
+		</script>
+		<script type='text/javascript' src='http://opportunitydesk.org/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.7.2'></script>
+		<!-- Facebook Comments Plugin for WordPress: http://peadig.com/wordpress-plugins/facebook-comments/ -->
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=457230684333685&version=v2.3";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>	
+
+		<!-- CSS + jQuery + JavaScript --> 
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:regular,bold' rel='stylesheet' type='text/css'/>
+		<!--[if lt IE 9]> 
+		<link rel='stylesheet' href='http://opportunitydesk.org/wp-content/themes/bresponzive_pro/css/ie8.css' type='text/css' media='all' />
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> 
+		<script type="text/javascript" src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<![endif]-->
+		<!--[if  IE 9]>
+		<link rel='stylesheet' href='http://opportunitydesk.org/wp-content/themes/bresponzive_pro/css/ie9.css' type='text/css' media='all' /> 
+		<![endif]-->
+
+		<!-- All in One SEO Pack 2.3.2.3 by Michael Torbert of Semper Fi Web Design[315,399] -->
+		<meta property="og:title" content="International Youth Forum 2016 | Opportunity Desk" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="http://opportunitydesk.org/2016/07/04/apply-to-the-international-youth-forum-2016-fully-funded/" />
+		<meta property="og:image" content="http://opportunitydesk.org/wp-content/uploads/2016/07/Youth-Forum_2-700x339.jpg" />
+		<meta property="og:site_name" content="Opportunity Desk" />
+		<meta property="og:description" content="IYF invites the participation of youths from around the world, with a particular emphasis on independent thinking and social transformation" />
+		<meta property="article:published_time" content="2016-07-04T07:49:25Z" />
+		<meta property="article:modified_time" content="2016-07-04T14:46:55Z" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="International Youth Forum 2016 | Opportunity Desk" />
+		<meta name="twitter:description" content="IYF invites the participation of youths from around the world, with a particular emphasis on independent thinking and social transformation" />
+		<meta name="twitter:image" content="http://opportunitydesk.org/wp-content/uploads/2016/07/Youth-Forum_2-700x339.jpg" />
+		<meta itemprop="image" content="http://opportunitydesk.org/wp-content/uploads/2016/07/Youth-Forum_2-700x339.jpg" />
+		<!-- /all in one seo pack -->
+		<link rel="alternate" type="application/rss+xml" title="Opportunity Desk &raquo; Feed" href="http://opportunitydesk.org/feed/" />
+		<link rel="alternate" type="application/rss+xml" title="Opportunity Desk &raquo; Comments Feed" href="http://opportunitydesk.org/comments/feed/" />
+		<!-- This site is powered by Shareaholic - https://shareaholic.com -->
+		<script type='text/javascript' data-cfasync='false'>
+		  //<![CDATA[
+			_SHR_SETTINGS = {"endpoints":{"local_recs_url":"http:\/\/opportunitydesk.org\/wp-admin\/admin-ajax.php?action=shareaholic_permalink_related","share_counts_url":"http:\/\/opportunitydesk.org\/wp-admin\/admin-ajax.php?action=shareaholic_share_counts_api"}};
+		  //]]>
+		</script>
+		<script type='text/javascript'
+				src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js'
+				data-shr-siteid='b57b10250b12b1c0d2409896bee47d07'
+				data-cfasync='false'
+				async='async' >
+		</script>
+
+		<!-- Shareaholic Content Tags -->
+		<meta name='shareaholic:site_name' content='Opportunity Desk' />
+		<meta name='shareaholic:language' content='en-US' />
+		<meta name='shareaholic:url' content='http://opportunitydesk.org/2016/07/04/apply-to-the-international-youth-forum-2016-fully-funded/' />
+		<meta name='shareaholic:keywords' content='bali, culture for an inclusive sustainable planet, indonesia, international youth forum, international youth forum 2016, iyf 2016, world culture forum, yout and culture, youth culture for social transformation and equality, conferences' />
+		<meta name='shareaholic:article_published_time' content='2016-07-04T07:49:25+00:00' />
+		<meta name='shareaholic:article_modified_time' content='2016-07-29T16:05:22+00:00' />
+		<meta name='shareaholic:shareable_page' content='true' />
+		<meta name='shareaholic:article_author_name' content='Jude Ogar' />
+		<meta name='shareaholic:site_id' content='b57b10250b12b1c0d2409896bee47d07' />
+		<meta name='shareaholic:wp_version' content='7.8.0.2' />
+		<meta name='shareaholic:image' content='http://opportunitydesk.org/wp-content/uploads/2016/07/Youth-Forum_2-700x339.jpg' />
+		<!-- Shareaholic Content Tags End -->
+
+		<!-- Shareaholic Open Graph Tags -->
+		<meta property='og:image' content='http://opportunitydesk.org/wp-content/uploads/2016/07/Youth-Forum_2-700x339.jpg' />
+		<!-- Shareaholic Open Graph Tags End -->
+				<script type="text/javascript">
+					window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/opportunitydesk.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.7"}};
+					!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+				</script>
+				<style type="text/css">
+		img.wp-smiley,
+		img.emoji {
+			display: inline !important;
+			border: none !important;
+			box-shadow: none !important;
+			height: 1em !important;
+			width: 1em !important;
+			margin: 0 .07em !important;
+			vertical-align: -0.1em !important;
+			background: none !important;
+			padding: 0 !important;
+		}
+		</style>
+		<link rel='stylesheet' id='validate-engine-css-css'  href='css/validationEngine.jquery.css' type='text/css' media='all' />
+		<link rel='stylesheet' id='contact-form-7-css'  href='css/stylenew.css' type='text/css' media='all' /><!--stylenew.css-->
+		<link rel='stylesheet' id='wp-elegant-testimonial-style-css'  href='css/wp-elegant-testimonial.css' type='text/css' media='all' />
+		<link rel='stylesheet' id='google-web-font0-css'  href='http://fonts.googleapis.com/css?family=Open+Sans' type='text/css' media='all' />
+		<link rel='stylesheet' id='google-web-font1-css'  href='http://fonts.googleapis.com/css?family=Oswald' type='text/css' media='all' />
+		<link rel='stylesheet' id='google-web-font2-css'  href='http://fonts.googleapis.com/css?family=Bitter' type='text/css' media='all' />
+		<link rel='stylesheet' id='style-css'  href='css/stylenew1.css' type='text/css' media='all' /><!--stylenew1.css-->
+		<link rel='stylesheet' id='camera-css'  href='css/cameranew.css' type='text/css' media='all' /><!--cameranew.css-->
+		<link rel='stylesheet' id='skeleton-css'  href='css/skeletion.css' type='text/css' media='all' /><!--skeleton.css-->
+		<link rel='stylesheet' id='google-webfonts-css'  href='http://fonts.googleapis.com/css?family=Oswald|PT+Sans|Open+Sans' type='text/css' media='all' />
+		<link rel='stylesheet' id='jquery-style-css'  href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css?ver=4.2.7' type='text/css' media='all' />
+		<!-- This site uses the Google Analytics by Yoast plugin v5.4.6 - Universal enabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
+
+		<!-- / Google Analytics by Yoast -->
+		<script type='text/javascript' src='js/jquery.js'></script> <!--jquery.js-->
+		<script type='text/javascript' src='js/jquery-migrate.min.js'></script> <!--jquery-migrate.min.js-->
+		<script type='text/javascript' src='js/content-text-slider-on-post.js'></script> <!--content-text-slider-on-post.js-->
+		<script type='text/javascript' src='js/jquery.tools.min.js'></script> <!--jquery.tools.min.js-->
+		<script type='text/javascript' src='js/camera.min.js'></script> <!--camera.min.js-->
+		<script type='text/javascript' src='js/jquery.mobile.customized.min.js'></script> <!--jquery.mobile.customized.min.js-->
+		<script type='text/javascript' src='js/jquery.backstretch.min.js'></script> <!--jquery.backstretch.min.js-->
+		<script type='text/javascript' src='js/jquery.mobilemenu.min.js'></script> <!---jquery.mobilemenu.min.js-->
+		<script type='text/javascript' src='js/jquery.easing.1.3.js'></script> <!---jquery.easing.1.3.js-->
+		<script type='text/javascript' src='js/jquery.ticker.js'></script> <!--jquery.ticker.js-->
+		<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://opportunitydesk.org/xmlrpc.php?rsd" />
+		<meta name="generator" content="WordPress 4.2.7" />
+		<link rel='shortlink' href='http://opportunitydesk.org/?p=20014' />
+
+		<!-- BEGIN License added by Creative-Commons-Configurator plugin for WordPress -->
+		<style type="text/css">
+		p.cc-block { clear: both; width: 90%; margin: 8px auto; padding: 4px; text-align: center; border: 1px solid #cccccc; color: #000000; background-color: #eef6e6; }
+		p.cc-block a:link, p.cc-block a:visited, p.cc-block a:hover, p.cc-block a:active { text-decoration: underline; color: #000000; border: none;}
+		.cc-block img, .cc-block a img { display: inline; padding: 8px; text-decoration: none; }
+		.cc-button { border-width: 0; }
+		</style>
+
+		<!-- END License added by Creative-Commons-Configurator plugin for WordPress -->
+
+		<meta property="fb:app_id" content="457230684333685"/><meta property="og:type" content="article"/><meta property="og:url" content="http://opportunitydesk.org/2016/07/04/apply-to-the-international-youth-forum-2016-fully-funded/"/><meta property="og:title" content="Apply to the International Youth Forum 2016 (Fully Funded)"/><meta property="og:description" content="Conferences"/><meta property="og:image" content="http://opportunitydesk.org/wp-content/plugins/facebook-page-publish-2/line.png"/><style>#catnav.secondary>#catmenu.catnav>.cat-style-29>a:hover{
+						background-color: #dd9933;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-10>a:hover{
+						background-color: #E033D2;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-11>a:hover{
+						background-color: #4316e5;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-24>a:hover{
+						background-color: #E033D2;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-147>a:hover{
+						background-color: #eeee22;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-30>a:hover{
+						background-color: #10A33C;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-12>a:hover{
+						background-color: #33006b;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-131>a:hover{
+						background-color: #164852;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-161>a:hover{
+						background-color: #63a021;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-148>a:hover{
+						background-color: #FF3838;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-1281>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-11218>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-8>a:hover{
+						background-color: #E033D2;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-1282>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-6>a:hover{
+						background-color: #495E67;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-187>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-1277>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-1279>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-1278>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-476>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-1276>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-126>a:hover{
+						background-color: #8224E3;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-5516>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-75>a:hover{
+						background-color: #26ACEF;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-1>a:hover{
+						background-color: #495E67;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-1280>a:hover{
+						background-color: ;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-105>a:hover{
+						background-color: #FF3838;
+					}#catnav.secondary>#catmenu.catnav>.cat-style-110>a:hover{
+						background-color: #495E67;
+					}</style><script type="text/javascript">
+		/******************************************************************************
+		***   COPY PROTECTED BY http://chetangole.com/blog/wp-copyprotect/   version 3.1.0 ****
+		******************************************************************************/
+		function disableSelection(target){
+		if (typeof target.onselectstart!="undefined") //For IE 
+			target.onselectstart=function(){return false}
+		else if (typeof target.style.MozUserSelect!="undefined") //For Firefox
+			target.style.MozUserSelect="none"
+		else //All other route (For Opera)
+			target.onmousedown=function(){return false}
+		target.style.cursor = "default"
+		}
+		</script>
+		<style type="text/css" media="screen"> 
+			 body{ color: #666;font-weight: normal;font-size: 13px;}
+			#catnav ul a{ font-family: Open Sans;font-weight: normal;font-size: 13px;}
+			#catnav.secondary ul a{ font-family: Oswald;font-weight: normal;font-size: 16px;}
+			h2.blogpost-wrapper-title{ font-weight: normal;font-size: 20px;}
+			.blog-lists-blog h3 a{ font-weight: normal;font-size: 24px;}
+			 .blog-lists h3 a{ font-weight: normal;font-size: 14px;}
+			.widget-head, ul.tabs2 li a{ font-weight: normal;font-size: 20px;}
+			h3.widget-title{ font-weight: normal;font-size: 21px;}
+			.post-title h1{ font-weight: normal;font-size: 40px;}
+			#post-meta ,.post-meta-blog{ font-weight: normal;font-size: 11px;}
+			.post_content{ font-weight: normal;font-size: 14px;}
+			.single-navigation, .comment-nav-above, .comment-nav-below{ font-family: Bitter;font-weight: normal;font-size: 14px;}
+			.comment-content{ font-weight: normal;font-size: 13px;}
+			.post_content h1{ font-weight: normal;font-size: 32px;}
+			.post_content h2{ font-weight: normal;font-size: 28px;}
+			.post_content h3{ font-weight: normal;font-size: 24px;}
+			.post_content h4{ font-weight: normal;font-size: 20px;}
+			.post_content h5{ font-weight: normal;font-size: 16px;}
+			.post_content h6{ font-weight: normal;font-size: 12px;}
+		</style>
+	</head>
+	
+	<body class="single single-post postid-20014 single-format-standard">
+        <!-- Header -->
+        <header>
+            <!-- Header Top Display In large and Tablet Device -->
+            <div class="header-top hide-on-small-only">
+                <div class="container">
+                    <div class="row">
+                        <div class="col l4 col m5 col s12">
+                            <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+                            <!-- Dropdown -->
+                            <div class="header-dropdown">
+                                <!-- Dropdown Trigger -->
+                            </div>
+                        </div>
+                        <div class="col l4 col m3 col s12">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="index.html"><img src="images/material-logo.png" alt="Logo"></a>
+                            </div>
+                        </div>
+                        <div class="col l4 col m4 col s12 pull-right">
+                            <!-- Search Button -->
+                            <form class="searchbox">
+                                <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required>
+                                <input type="submit" class="searchbox-submit">
+                                <span class="searchbox-icon"><i class="mdi-action-search"></i></span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Header top Display On Mobile -->
+            <div class="header hide-on-med-and-up">
+                <div class="top-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col l4 col m5 col s2">
+                                <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                            </div>
+                            <div class="col l4 col m4 col s5">    
+                                <!-- Dropdown -->
+                                <div class="header-dropdown">
+                                    <!-- Dropdown Trigger -->
+                                </div>
+                            </div>
+                            <div class="col l4 col m4 col s2">
+                            <!-- Search Button -->
+                                <form class="searchbox">
+                                    <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required>
+                                    <input type="submit" class="searchbox-submit">
+                                    <span class="searchbox-icon"><i class="mdi-action-search"></i></span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col l4 col m4 col s12">
+                                <!-- Logo -->
+                                <div class="logo">
+                                    <a href="index.html"><img src="images/material-logo.jpg" alt="Logo"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <!-- Navigation -->
+            <nav role="navigation"  class="hide-on-small-only"> 
+                <div class="nav-wrapper menu-category">
+				<!-- #CatNav -->  
+			
+			<div id="catnav" class="secondary">	
+				<ul id="catmenu" class="catnav  container clearfix">
+					<li id="menu-item-740" class="menu-gray menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-740 cat-style-740"><a href="#">Beranda</a>
+						<ul class="sub-menu">
+							<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="#">Kompetensi Utama</a>
+							<ul class="sub-menu">
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="http://www.sains.lapan.go.id"> Sains Antariksa dan Atmosfir </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="http://www.inderaja.lapan.go.id"> Penginderaan Jauh </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="http://www.tekgan.lapan.go.id"> Teknologi Penerbangan dan Antariksa </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="http://www.puskkpa.lapan.go.id"> Kajian Kebijakan Penerbangan dan Antariksa </a></li>
+							</ul>					
+							</li>
+							<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="#">Layanan</a>
+							<ul class="sub-menu">
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="layanan-informasi.html"> Layanan Informasi </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="http://www.pusfatekgan.lapan.go.id/"> BLU Penerbangan<br>dan Antariksa </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="layanan-manajemen.html"> Layanan Manajemen </a></li>
+							</ul>					
+							</li>
+						</ul>
+					</li>
+					<li>
+					</li>
+						<li id="menu-item-76" class="menu-green menu-item menu-item-type-taxonomy menu-item-object-category menu-item-76 cat-style-11"><a href="#">Profil</a>
+							<ul class="sub-menu">
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="visi-misi.html"> Visi & Misi </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="tugas-fungsi.html"> Tugas & Fungsi </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="#"> Organisasi </a>
+									<ul class="sub-menu">
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="organisasi-kepala.html"> Kepala Lapan </a></li>
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="organisasi-sekretaris.html"> Sekretaris Utama </a></li>
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="organisasi-deputi-sains.html"> Deputi Sains Antariksa & Atmosfer </a></li>
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="organisasi-deputi-tekbang.html"> Deputi Tek. Penerbangan & Antariksa</br> </a></li>
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="organisasi-deputi-penginderaan.html"> Deputi Penginderaan Jauh </a></li>
+									</ul>
+								</li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="sejarah.html"> Sejarah</a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="profil-sdm.html"> SDM </a>
+									<ul class="sub-menu">
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="profil-sdm.html"> Profil SDM </a></li>
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="profil-pejabat.html"> Profil Pejabat </a></li>
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="prof-riset.html"> Professor Riset </a></li>						
+									</ul>
+								</li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="logo.html"> Logo </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="#"> Rencana Strategis&Kinerja </a></li>
+									<ul class="sub-menu">
+										<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="rencana-strategis.html"> Rencana Strategis</a></li>
+										<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="#"> Roadmap</a></li>
+										<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="indikator.html"> Indikator Kinerja Utama</a></li>
+										<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="penetapan-kinerja.html"> Penetapan Kinerja</a></li>
+										<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="lakip.html"> LAKIP</a></li>
+										<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="laporan.html"> Laporan Tahunan</a></li>
+									</ul>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="produk-litbang.html"> Produk Litbang </a></li>
+									<ul class="sub-menu">
+										<li id="menu-item=774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="teknologi.html">Teknologi</a></li>
+										<li id="menu-item=774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="#">Karya Tulis Ilmiah</a></li>
+										<li id="menu-item=774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="#">Hak Kekayaan Intelektual</a></li>
+										
+									</ul>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="kerjasama.html"> Kerjasama </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="lokasi-satker.html"> Lokasi Satuan Kerja </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="tautan.html"> Tautan </a></li>
+							</ul>					
+						</li>
+					<li id="menu-item-79" class="menu-blue menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-79 cat-style-6"><a href="berita.html">Berita</a>
+						<ul class="sub-menu">
+							<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="berita.html">Berita Lapan</a></li>
+							<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="#">Siaran Pers</a></li>
+							<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="lapan-media.html">LAPAN@ Media</a></li>
+							<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="#">Pengumuman</a></li>
+								<ul class="sub-menu">
+									<li id="menu-item-774" class="menu-turqoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="pengumuman-kepegawaian.html">Kepegawaian</a></li>
+									<li id="menu-item-774" class="menu-turqoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="pengumuman-lelang.html">Lelang</a></li>
+								</ul>
+							<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="agenda-coba.html">Agenda</a></li>					
+						</ul>
+					</li>
+					<li>
+					</li>
+					<li id="menu-item-98" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-98 cat-style-29"><a href="#">Peraturan</a>
+						<ul class="sub-menu">
+							<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="http://lapan.go.id/files_arsip/UU_no.21-2013_keantariksaan_.pdf">UU Keantariksaan</a></li>
+							<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="http://lapan.go.id/files_arsip/Perpres_Nomor_49_Tahun_2015.pdf">Perpres No.49 tahun 2015</a></li>
+							<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="#">Inpres No.6 tahun 2012</a></li>
+							<li id="menu-item-774" class="menu-turquoise menu-item menu-item-type-taxonomy menu-item-object-category menu-item-774 cat-style-30"><a href="http://jdih.lapan.go.id/">JDIH</a></li>
+							
+						</ul>
+					</li>
+					<li>
+					</li>
+					<li id="menu-item-80" class="menu-orange menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-80 cat-style-10"><a href="#">PPID</a>
+						<ul class="sub-menu">
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="profil-ppid.html"> Profil </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="struktur-ppid.html"> Struktur Organisasi </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="kode-etik.html"> Kode Etik </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="simpul-layanan.html"> Simpul Layanan</a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="alur-kerja.html"> Alur Kerja </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="#"> Informasi Publik </a>
+									<ul class="sub-menu">
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="info-berkala.html"> Informasi Berkala </a></li>
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="info-sertamerta.html"> Informasi Serta Merta </a></li>
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="info-setiapsaat.html"> Informasi Setiap Saat </a></li>
+									</ul>
+								</li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="form-info.html"> Permohonan Informasi </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="#"> Laporan </a>
+									<ul class="sub-menu">
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="laporan-layanan.html"> Akses Layanan </a></li>
+										<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="laporan-tahunan.html"> Tahunan PPID </a></li>
+									</ul>
+								</li>						
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="sop.html"> SOP </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="peraturan-ppid.html"> Peraturan </a></li>
+								<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998 cat-style-2995"><a href="index-kepuasan.html"> Indeks Kepuasan Masyarakat </a></li>	
+						</ul>
+					</li>
+					<li></li>
+					<li id="menu-item-77" class="menu-red menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-77 cat-style-12"><a href="http://opportunitydesk.org/category/jobs-and-internships/">Multimedia</a>
+						<ul class="sub-menu">
+							<li id="menu-item-3831" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3831 cat-style-161"><a href="#">Foto</a></li>
+							<li id="menu-item-3832" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3832 cat-style-105"><a href="video.html">Video</a></li>
+						</ul>
+					</li>
+					<li id="menu-item-79" class="menu-blue menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-79 cat-style-6"><a href="#">Edukasi</a>
+						<ul class="sub-menu">
+							<li id="menu-item-4495" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4495 cat-style-1280"><a href="artikel.html">Artikel</a></li>
+							<li id="menu-item-4496" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4496 cat-style-1281"><a href="kegiatan-paginate.html">Kegiatan</a></li>
+							<li id="menu-item-4497" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4497 cat-style-1282"><a href="http://matsa.sains.lapan.go.id/ISS kids english (J)/index-ina.htm">Interaktif</a></li>
+						</ul>
+					</li>
+					<li id="menu-item-736" class="menu-blue menu-item menu-item-type-taxonomy menu-item-object-category menu-item-736 cat-style-24"><a href="unduh.html">Unduh</a></li>
+					<li id="menu-item-736" class="menu-blue menu-item menu-item type-taxonomu menu-item-object-category menu-item-736 cat-style-24"><a href="peta-situs.html"> Peta Situs
+					<li id="menu-item-764" class="menu-purple menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-764 cat-style-8"><a href="https://mail.lapan.go.id/">Kontak</a>
+						<ul class="sub-menu">
+							<li id="menu-item-784" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-784 cat-style-110"><a href="contact2.html">Kontak kami</a></li>
+							<li id="menu-item-784" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-784 cat-style-110"><a href="#">Email</a></li>
+							<li id="menu-item-784" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-784 cat-style-110"><a href="satker.html">Alamat Satker</a></li>
+							<li id="menu-item-784" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-784 cat-style-110"><a href="gmap.html">Peta Lokasi</a></li>
+							<li id="menu-item-784" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-784 cat-style-110"><a href="#">E-Kontak</a></li>
+						</ul>
+					</li>
+				</ul>	
+			</div> 
+			<!-- /#CatNav -->
+			<ul><ul><ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li><li></li><li></ul></ul></ul>
+		</header>
+	
+		<!-- Sidebar Navigation -->
+        <ul id="slide-out" class="side-nav full">
+            <li class="logo-title"><a href="javascript:void(0);">Material News</a></li>
+            <!-- Dropdown Menu -->
+            <li class="dropdown-menu">
+                <ul class="collapsible" data-collapsible="expandable">
+                    <li class="">
+                        <div class="collapsible-header waves-effect waves"><i class="fa fa-file"></i> Home Page <i class="fa fa-angle-right"></i></div>
+                        <div style="display: none;" class="collapsible-body">
+                            <ul>
+                                <li class="waves-effect"><a href="index.html"><i class="fa fa-angle-right"></i> Home Page 1</a></li>
+                                <li class="waves-effect"><a href="index2.html"><i class="fa fa-angle-right"></i> Home Page 2</a></li>
+                                <li class="waves-effect"><a href="index3.html"><i class="fa fa-angle-right"></i> Home Page 3</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="collapsible-header waves-effect waves active"><i class="fa fa-file-text"></i> News Detail<i class="fa fa-angle-right"></i></div>
+                        <div style="display: block;" class="collapsible-body">
+                            <ul>
+                                <li class="waves-effect"><a href="news-single1.html"><i class="fa fa-angle-right"></i> News Detail 1</a></li>
+                                <li class="waves-effect"><a href="news-single2.html"><i class="fa fa-angle-right"></i> News Detail 2</a></li>
+                                <li class="waves-effect active"><a href="news-single3.html"><i class="fa fa-angle-right"></i> News Detail 3</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="collapsible-header waves-effect waves"><i class="fa fa-file-text"></i> Category <i class="fa fa-angle-right"></i></div>
+                        <div style="display: none;" class="collapsible-body">
+                            <ul>
+                                <li class="waves-effect"><a href="index-sport.html"><i class="fa fa-angle-right"></i> Sport </a></li>
+                                <li class="waves-effect"><a href="index-life.html"><i class="fa fa-angle-right"></i> Life </a></li>
+                                <li class="waves-effect"><a href="index-travel.html"><i class="fa fa-angle-right"></i> Travel </a></li>
+                                <li class="waves-effect"><a href="index-money.html"><i class="fa fa-angle-right"></i> Money </a></li>
+                                <li class="waves-effect"><a href="index-tech.html"><i class="fa fa-angle-right"></i> Tech  </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="waves-effect"><a href="shop.html"><i class="fa fa-tag"></i>Shop</a></li>
+            <li class="waves-effect"><a href="catalog.html"><i class="fa fa-briefcase"></i>Catalog</a></li>
+            <li class="waves-effect"><a href="product-detail.html"><i class="fa fa-plus-square"></i>product Detail</a></li>
+            <li class="waves-effect"><a href="shopping-cart.html"><i class="fa fa-shopping-cart"></i>Shopping Cart</a></li>
+            <li class="waves-effect"><a href="profile.html"><i class="fa fa-user"></i>Profile</a></li>
+            <li class="waves-effect"><a href="brand1.html"><i class="fa fa-rocket"></i>Brand Style 1</a></li>
+            <li class="waves-effect"><a href="brand2.html"><i class="fa fa-plane"></i>Brand Style 2</a></li>
+            <li class="waves-effect"><a href="about.html"><i class="fa fa-users"></i>About</a></li>
+            <li class="waves-effect"><a href="contact1.html"><i class="fa fa-phone"></i>Contact Style 1</a></li>
+            <li class="waves-effect"><a href="contact2.html"><i class="fa fa-map-marker"></i>Contact Style 2</a></li>
+            <li class="waves-effect"><a href="login.html"><i class="fa fa-lock"></i>Login</a></li>
+        </ul>
+		
+		<!-- Main Wrapper -->
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+					<div class="col l3 col m12 col s12">
+						<!-- News Sidebar -->
+						<div class="sidbar-box z-depth-1">
+							<div class="sidebar-title">Kompetensi Utama</div>
+							<div class="news-sidebar">
+								<div class="news-box">
+									<!-- News Sidebar Image -->
+									<div class="image">
+										<img alt="news Image" src="images/sainsa5.png">
+									</div>
+									<!-- News Sidebar Detail -->
+									<div class="news-detail">
+										<!-- News Sidebar Category -->
+										<div class="news-category">
+											<a href="javascript:void(0)">World | 21 min ago </a>
+										</div>
+										<!-- News Sidebar Title -->
+										<div class="news-title">
+											<a href="javascript:void(0)"> Sains Antariksa & Atmosfer </a>
+										</div>
+									</div>
+								</div>
+							
+								<div class="news-box">
+									<!-- News Sidebar Image -->
+									<div class="image">
+										<img alt="news Image" src="images/deinderaja3.png">
+									</div>
+									<!-- News Sidebar Detail -->
+									<div class="news-detail">
+										<!-- News Sidebar Category -->
+										<div class="news-category">
+											<a href="javascript:void(0)">World | 21 min ago </a>
+										</div>
+										<!-- News Sidebar Title -->
+										<div class="news-title">
+											<a href="javascript:void(0)"> Penginderaan Jauh </a>
+										</div>
+									</div>
+								</div>
+							
+								<div class="news-box">
+									<!-- News Sidebar Image -->
+									<div class="image">
+										<img alt="news Image" src="images/detekgan4.png">
+									</div>
+									<!-- News Sidebar Detail -->
+									<div class="news-detail">
+										<!-- News Sidebar Category -->
+										<div class="news-category">
+											<a href="javascript:void(0)">World | 21 min ago </a>
+										</div>
+										<!-- News Sidebar Title -->
+										<div class="news-title">
+											<a href="javascript:void(0)"> Teknologi Penerbangan dan Antariksa </a>
+										</div>
+									</div>
+								</div>
+							
+								<div class="news-box">
+									<!-- News Sidebar Image -->
+									<div class="image">
+										<img alt="news Image" src="images/kebijakan5.png">
+									</div>
+									<!-- News Sidebar Detail -->
+									<div class="news-detail">
+										<!-- News Sidebar Category -->
+										<div class="news-category">
+											<a href="javascript:void(0)">World | 21 min ago </a>
+										</div>
+										<!-- News Sidebar Title -->
+										<div class="news-title">
+											<a href="javascript:void(0)"> Kajian Kebijakan Penerbangan & Antariksa</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="sidbar-box z-depth-1">
+								<div class="sidebar-title">Layanan</div>
+								<div class="news-sidebar">
+									<div class="news-box">
+										<!-- News Sidebar Image -->
+										<div class="image">
+											<img alt="news Image" src="images/LAYANAN_MANAJEMEN3.png">
+										</div>
+										<!-- News Sidebar Detail -->
+										<div class="news-detail">
+											<!-- News Sidebar Category -->
+											<div class="news-category">
+												<a href="javascript:void(0)">World | 21 min ago </a>
+											</div>
+											<!-- News Sidebar Title -->
+											<div class="news-title">
+												<a href="javascript:void(0)"> Layanan Manajemen </a>
+											</div>
+										</div>
+									</div>
+								
+									<div class="news-box">
+										<!-- News Sidebar Image -->
+										<div class="image">
+											<img alt="news Image" src="images/layanan_informasi3.png">
+										</div>
+										<!-- News Sidebar Detail -->
+										<div class="news-detail">
+											<!-- News Sidebar Category -->
+											<div class="news-category">
+												<a href="javascript:void(0)">World | 21 min ago </a>
+											</div>
+											<!-- News Sidebar Title -->
+											<div class="news-title">
+												<a href="javascript:void(0)"> Layanan Informasi </a>
+											</div>
+										</div>
+									</div>
+								
+									<div class="news-box">
+										<!-- News Sidebar Image -->
+										<div class="image">
+											<img alt="news Image" src="images/blu.jpg">
+										</div>
+										<!-- News Sidebar Detail -->
+										<div class="news-detail">
+											<!-- News Sidebar Category -->
+											<div class="news-category">
+												<a href="javascript:void(0)">World | 21 min ago </a>
+											</div>
+											<!-- News Sidebar Title -->
+											<div class="news-title">
+												<a href="javascript:void(0)"> BLU Penerbangan dan Antariksa  </a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!---<div class="col l9">--->
+					<div class="col l9 col m12">
+						<!-- News Single Style 3 -->
+						<div class="news-single style-3 z-depth-1">
+							<!-- News Image -->
+							<img class="responsive-img" src="images/bimtek.jpg" alt="news Image">
+							<div class="content">
+								<!-- News Category -->
+								<div class="news-time">22 Feb 2016</div>
+								<!-- News Title -->
+								<div class="news-title">
+									Foto Bersama
+								</div>
+								<!-- News Description -->
+								<div class="description">
+									<p>Foto bersama pejabat yang hadir di Sinasinderaja 2016<br></p>
+									<br><p><a href="#" class="linktipe3">View Image<br></p></a>
+								</div>
+								<br>
+								<br>
+									<div class="col l12">
+									<!-- Comment Box -->
+									<!--<div class="comment z-depth-1">--->
+										<div class="col l13 col m12 col s12">
+											<!-- Comment Title -->
+											<div class="comment-title">Browse Photo Album</div>
+											<div class="clearfix"></div>
+											
+											<!-- the input fields that will hold the variables we will use -->
+											<input type='hidden' id='current_page' />
+											<input type='hidden' id='show_per_page' />
+											
+											<!-- Content div. The child elements will be used for paginating(they don't have to be all the same,
+											you can use divs, paragraphs, spans, or whatever you like mixed together). '-->
+
+											<div id='content'>
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="galeri-sinasinderaja-2016.html" class="linktipe3"> Sinasinderaja 2016</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Seminar Nasional Penginderaan Jauh (Sinasja) 2016 di The Margo Hotel, Depok, Jawa Barat. Kegiatan rutin tahunan ini menjadi forum pertukaran informasi dan pengalaman komunitas penginderaan jauh di Indonesia. Para peneliti, perekayasa, akademisi, dan praktisi hadir untuk mendukung LAPAN dalam upaya peningkatan kualitas pelayanan data penginderaan jauh di berbagai sektor kebutuhan.…</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="galeri-kunjungan-wapres-2016.html" class="linktipe3"> Kunjungan Wakil Presiden RI (22 Juni 2016)</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Jusuf Kalla, Wapres RI mengunjungi Pusat Teknologi Penerbangan (Pustekbang) LAPAN dalam rangka Peresmian Pengembangan Pemantauan Maritim Berbasis Iptek Penerbangan dan Antariksa. Serta, live streaming peluncuran satelit LAPAN-A3/ LAPAN-IPB</p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="galeri-audiensi-lapan-2016.html" class="linktipe3"> Audiensi Kepala LAPAN dgn Wapres RI (17 Mei 2016)</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Kepala LAPAN memaparkan tujuh program utama LAPAN, termasuk keberhasilan Satelit LAPAN-A1/LAPAN-TUBSAT dan LAPAN-A2/LAPAN-ORARI, serta rencana peluncuran Satelit LAPAN-A3/LAPAN-IPB. Program Unggulan LAPAN tersebut, adalah pengembangan teknologi satelit, teknologi aeronautika (pesawat transport dan sistem pemantau maritim berbasis pesawat tanpa awak), roket sonda yang akan dijadikan roket peluncur satelit, bank data penginderaan jauh,…</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="galeri-sosialisasi-peluncuran-2016.html" class="linktipe3"> Sosialisasi Persiapan Peluncuran LAPAN-A3</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Satelit LAPAN-A3/ LAPAN-IPB akan segera diluncurkan, LAPAN mengadakan sosialisasi persiapan peuncuran LAPAN-A3/ LAPAN-IPB dan juga sosialisasi hasil operasi satelit LAPAN-A2/ LAPAN-ORARI di Pusat Teknologi Satelit LAPAN.</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="galeri-climate-change-edu-2016.html" class="linktipe3"> Climate Change Education Forum & Expo 2016</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>LAPAN berperan serta dalam pameran perubahan iklim di Assembly Hall JCC Senayan, Jakarta pada 14-17 April 2016</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Komodo Exercise dan Sosialisasi LAPAN</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>LAPAN mengadakan sosialisasi di Universitas Negeri Padang dan mengikuti pameran Multilateral Naval Exercise Komodo (MNEK) 2016 di Padang</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Foto Kegiatan GMT 2016 di berbagai daerah</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Gerhana matahari Total dan Gerhana Matahari Sebagian 2016 ini melintasi Indonesia. Fenomena ini tergolong langka karena baru akan terjadi di lintasan yang sama 300-an tahun lagi. Dengan demikian kejadian ini menjadi perhatian berbagai lapisan masyarakat serta peneliti mancanegara.</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Sosialisasi Gerhana Matahari Total 2016</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>LAPAN selenggarakan Sosialisasi Gerhana Matahari Total 2016 di Palembang pada 8 maret 2016</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+											
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Galaxy Forum & Pameran SKYWorld Among Putro TMII</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>LAPAN berpartisipasi dalam Galaxy Forum South East Asia 2016, Rabu 24 Februari 2016. Kepala LAPAN, Prof. Dr. Thomas Djamaluddin, menjadi pembicara utama dalam forum bertema Advancing Education, Science, and Technology of Astronomy-Aerospace for A Better Life for Humankind in The 21st Century. Kegiatan tersebut berlangsung di Skyworld, TMII, Jakarta. Sedangkan…</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Star Party At Taqwa College</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Tujuan diadakannya acara Star Party adalah untuk mengeksplor dan mengenal astronomi lebih dalam, memberikan inspirasi kepada pelajar dan masyarakat umum sehingga bisa lebih maju dalam bidang astronomi, mensyukuri ciptaan Allah SWT melalui observasi benda-benda langit</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Trainning GCS UAV dan Uji Autonomous UAV LSU 03</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>LAPAN mengadakan Training Ground Control Station UAV dan Praktek Uji terbang Autonomous UAV di Pameungpeuk Garut</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Rapat Kerja Nasional RistekDikti</a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Rakernas dimaksudkan sebagai langkah atau tindakan konkret KemenristekDikti dan unsur terkait untuk menuntaskan program atau kegiatan prioritas 2016 sekaligus menyiapkan rancangan kebijakan 2017.</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Serah Terima Data Citra Satelit Inderaja </a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>LAPAN akan meningkatkan akuisisi citra satelit penginderaan jauh (inderaja) resolusi tinggi hingga skala 1:1000</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Kunjungan Universitas Bengkulu </a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Sebanyak 47 mahasiswa dan lima dosen Ilmu Kelautan Universitas bengkulu melakukan studi lapangan ke Kedeputian Penginderaan Jauh LAPAN di Pekayon, Pasar Rebo, Jakarta Timur, Senin (25/1</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Kunjungan Komisi VII DPR RI </a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Komisi VII DPR RI melihat proses produksi pesawat terbang di pabrik PT DI.</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Hitung Mundur GMT 2015 </a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Indonesia akan mengalami Gerhana Matahari Total (GMT) tanggal 9 Maret 2016. Negara ini akan menjadi tempat terbaik dan menarik untuk memantau fenomena GMT. Gerhana seperti ini baru akan terulang kembali di Indonesia diperkirakan 350 tahun mendatang. Para "pemburu GMT" seperti astronom, fotografer, dan ilmuwan dari berbagi disiplin ilmu pengetahuan dari…</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Rapat Pimpinan LAPAN </a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Rapim ini dihadiri Kepala LAPAN, para Deputi, Kepala Pusat dan Kepala Biro di Lingkungan LAPAN. Pada acara ini juga ditandatangani pakta integritas Pejabat Eselon 1 LAPAN</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3"> Pelantikan Pejabat Eselon III dan IV </a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Kepala LAPAN resmi melantik dan mengangkat sumpah jabatan atas 45 orang pejabat Eselon III dan 55 orang pejabat Eselon IV</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3">Pameran Alat Peralatan Pertahanan (Alpalhan) </a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>Pameran Alpalhan produksi industri dalam negeri pada rapat pimpinan (rapim) Tentara Nasional Indonesia (TNI) 2016 yang berlangsung di Mabes TNI Cilangkap, Jakarta Timur</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+												
+												<!-- Comment Box -->
+												<li class="comment-box">
+													<!-- Comment Content -->
+													<div class="comment-content">
+														<!-- Comment Name -->
+														<div class="row">
+															<!-- Comment Image -->
+															<img class="responsive-img1" src="images/folder-pic.png" alt="news Image" align="left" width="100" height="200">
+															<br><div class="comment-name"><a href="#" class="linktipe3">Penganugerahan Keterbukaan Informasi Tahun 2015 </a></div>
+														</div>
+														<!-- Comment Detail -->
+														<div class="row">
+														<div class="comment-detail">
+															<p><font style="italic"><h7>LAPAN raih peringkat ke-3 dalam Penganugerahan Pemeringkatan Keterbukaan Informasi pada Badan Publik Tahun 2015</h7></p>
+														</div>
+														</div>
+													</div>
+												</li>
+											</div>
+										</div>
+									<!--</div>--->
+									</div>
+								
+								<div id='page_navigation'></div>
+								
+								<!--<div class="col l13 col m12 col s12">
+									<ul class="pagination">
+										<li class="active"><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">></a></li>
+									</ul>
+								</div>
+								-->
+							</div>
+						</div>
+					</div>
+					<!--</div>--->
+                </div>
+            </div>
+        </div>
+		
+		        <!-- Footer -->
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l12 col m12 col s12">
+                        <!-- Footer Button -->
+                        <div class="footer-button center-align">
+                            <span class="mdi-action-history"></span>
+                        </div>
+                    </div>
+  
+                    <div class="col l12 col m12 col s12">
+                        <!-- Footer Column 1 -->
+                        <ul>
+                            <li class="footer-title">Kompetensi<br>Utama</br></li>
+                            <li>
+                                <a href="javascript:void(0);">Sains Antariksa & Atmosfer</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Penginderaan Jauh</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Teknologi<br>Penerbangan & Antariksa</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Kebijakan Penerbangan & Antariksa</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 2 -->
+                        <ul>
+                            <li class="footer-title">Layanan</li>
+                            <li>
+                                <a href="javascript:void(0);">Layanan Informasi</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">BLU Penerbangan dan Antariksa</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Layanan Manajemen</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 3 -->
+                        <ul>
+                            <li class="footer-title">Profil</li>
+                            <li>
+                                <a href="javascript:void(0);">Visi&Misi</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Tugas & Fungsi</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Organisasi</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Sejarah</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">SDM</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Renstra & Kinerja</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Produk Litbang</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 4 -->
+                        <ul>
+                            <li class="footer-title">Berita</li>
+                            <li>
+                                <a href="javascript:void(0);">Berita Lapan</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Siaran Pers</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">LAPAN@ Media</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Pengumuman</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 5 -->
+                        <ul>
+                            <li class="footer-title">Edukasi</li>
+                            <li>
+                                <a href="javascript:void(0);">Artikel</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Kegiatan</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Interaktif</a>
+                            </li>							
+                        </ul>
+                        
+                        <!-- Footer Column 6 -->
+                        <ul>
+                            <li class="footer-title">PPID</li>
+                            <li>
+                                <a href="javascript:void(0);">Informasi Berkala</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Informasi Serta Merta</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Informasi Setiap Saat</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 7 -->
+                        <ul>
+                            <li class="footer-title">Unduh</li>
+                        </ul>
+                        
+                        <!-- Footer Column 8 -->
+                        <ul>
+                            <li class="footer-title">Kontak</li>
+                            <li>
+                                <a href="contact2.html">Kontak kami</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Email</a>
+                            </li>
+                            <li>
+                                <a href="satker.html">Alamat Satker</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Peta Lokasi</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">E-Kontak</a>
+                            </li>
+							
+                        </ul>
+                    </div>
+                </div>
+                <!-- Footer Logo -->
+                <div class="logo">
+                    <a href="index_NAVIGATION GANTI.html"><img src="images/material-logo.png" alt="Logo"></a>
+                </div>
+            </div>
+            <!-- Footer Bottom -->
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                    <!-- Copyright Text -->
+                    <div class="col l4 col m12 col s12">
+                        &copy; LAPAN
+                    </div>
+                    <div class="col l4 col m12 col s12">
+                        <!-- Social Icon -->
+                        <div class="social-icon">
+                            <a href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-pinterest"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-instagram"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-rss"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-tumblr"></i></a>
+                        </div>
+                    </div>
+                    <div class="col l4 col m12 col s12">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+
+	<!-- An empty div which will be populated using jQuery -->
+	<div id='page_navigation'></div>
+	
+	<!-- Jquery -->
+    <script src="js/jquery-min.js"></script>
+    <!-- Materialize JS -->
+    <script src="js/materialize.js"></script>
+    <!-- Plugin Js -->
+    <script src="js/pgwslider.js"></script>
+    <script type='text/javascript' src='js/camera.js'></script>
+    <script src="js/jquery.touchSwipe.min.js"></script>
+    <script src="js/jquery.liquid-slider.js"></script>
+    <!-- Custom Js -->
+    <script src="js/init.js"></script>
+</body>
+</html>

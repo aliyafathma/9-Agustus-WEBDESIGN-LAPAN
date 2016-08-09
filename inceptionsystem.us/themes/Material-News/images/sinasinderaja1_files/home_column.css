@@ -1,0 +1,38 @@
+/*Import Type Css*/
+@import url('widget_text.css');
+
+@import url('widget_related_post.css');
+
+@import url('widget_post.css');
+
+@import url('widget_last_news.css');
+
+@import url('widget_tabs.css');
+
+@import url('widget_blogroll.css');
+
+
+/*Single Css*/
+
+.title_agenda {
+ 	background-color:#FFFFFF;
+	padding-left:10px;
+	color:#2a176f;
+	font-size:16px;
+	font-weight:bold;
+	margin-top:8px;
+	margin-bottom:4px;
+	min-height:16px;
+	padding-top:5px;
+ }
+
+.social li { padding:5px;}
+.social li a{ text-decoration:none;}
+
+
+
+
+
+
+
+
