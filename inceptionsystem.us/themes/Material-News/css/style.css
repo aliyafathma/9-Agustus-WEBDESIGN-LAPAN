@@ -1504,7 +1504,7 @@ header.header-fix{ background: #2f3e9b !important; }
 .logo > img { margin: 0 auto; }
 .logo.cart{ width: auto; display: inline-block; padding: 3px 0 0; }
 .header-fix .logo{ padding: 0; }
-.header-fix .logo.cart{ padding: 3px 0 0 0; }
+.header-fix .logo.cart{ padding: 10px 0 0 0; }
 .cart-menu{ margin: 0; }
 .cart-menu li ul{ top: 45px; }
 .header-fix .searchbox{ margin: 0 !important; }
@@ -1716,7 +1716,7 @@ nav,
 .nav-wrapper{
   height: auto; 
 }
-.logo{ padding: 20px 0; }
+.logo{ padding: 100px 0; }
 .logo img{ width: 100%;}
 .login{ margin-right: 70px;}
 .header-top .row{ margin-bottom: 0; }
@@ -1852,7 +1852,7 @@ ul.tab li a {
     display: inline-block;
     color: black;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 15px;
     text-decoration: none;
     transition: 0.3s;
     font-size: 17px;

@@ -6141,6 +6141,17 @@ textarea {
     resize: none;
     min-height: 3rem; }
 
+/*
+element.style {
+	}
+
+.headerlapan {
+	background-image: images/headerlapan1.jpg;
+	background-repeat: no-repeat;
+	height: 100px;
+}
+*/
+	
 .hiddendiv {
   display: none;
   white-space: pre-wrap;
@@ -7947,3 +7958,7 @@ a.linktipe3 {
 img.responsive-img1, video.responsive-video1 {
   max-width: 5%;
   height: auto;}	
+  
+.header-site{
+   background: url(images/headerlapan1.jpg);
+}

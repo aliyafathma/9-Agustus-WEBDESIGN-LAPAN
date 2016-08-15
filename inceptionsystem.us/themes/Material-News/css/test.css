@@ -1,0 +1,12 @@
+.header img {
+  float: left;
+  width: 1290px;
+  height: 100px;
+  background: url("headerlapan1.jpg");
+}
+
+.header h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
